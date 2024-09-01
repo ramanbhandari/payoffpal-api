@@ -1,26 +1,64 @@
-# README
+# PayoffPal API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Project Overview
 
-Things you may want to cover:
+The PayoffPal API provides the backend services and data management for the PayoffPal application. This API is built using Ruby on Rails with the API-only mode, and PostgreSQL is used as the database. The API handles user authentication, data processing, and serves the front-end with necessary endpoints.
 
-* Ruby version
+## Features
 
-* System dependencies
+- API endpoints for Debt Tracker
+- Payment Calculator data
+- Budget Planner
+- Debt Repayment Strategies
+- Progress Tracker
+- Alerts and Reminders
+- Educational Resources
 
-* Configuration
+## Technologies Used
 
-* Database creation
+- Ruby on Rails
+- PostgreSQL (or other database)
+- RSpec (for testing)
 
-* Database initialization
+## Getting Started
 
-* How to run the test suite
+### Prerequisites
 
-* Services (job queues, cache servers, search engines, etc.)
+- Ruby
+- Rails
+- PostgreSQL (or other database)
+- Bundler
 
-* Deployment instructions
+### Installation
 
-* ...
+Clone the repository and install dependencies:
+```bash
+git clone https://github.com/your-username/payoffpal-api.git
+cd payoffpal-api
+bundle install
+```
 
-# payoffpal-api
+### Database Setup
+Create and migrate the database:
+
+```bash
+rails db:create
+rails db:migrate
+```
+### Running the Server
+Start the Rails server:
+```bash
+rails server
+```
+
+### Test
+- RSpec
+- FactoryBot 
+
+### Development
+- Explore the app directory for models, controllers, and views.
+- Update config/routes.rb to manage API endpoints.
+- Manage database schemas and migrations in the db directory.
+
+### Testing
+Use RSpec for Ruby on Rails testing.
