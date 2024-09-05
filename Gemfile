@@ -38,6 +38,8 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 
 gem 'jwt'
 
+gem 'rack-cors'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
