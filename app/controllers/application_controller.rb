@@ -1,24 +1,26 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::API
-    before_action :authenticate_request
-    
-    def encode_token(payload)
-        JWT.encode(payload, Rails.application.secrets.secret_key_base)
-    end
+  before_action :authenticate_request
 
-    def decode_token(token)
-        JWT.decode(token, Rails.application.secrets.secret_key_base).first
-    rescue JWT::DecodeError
-        nil
-    end
+  def encode_token(payload)
+    JWT.encode(payload, Rails.application.secrets.secret_key_base)
+  end
 
-    def authenticate_request
-        token = request.headers['Authorization']&.split(' ')&.last
-        decoded_token = decode_token(token)
+  def decode_token(token)
+    JWT.decode(token, Rails.application.secrets.secret_key_base).first
+  rescue JWT::DecodeError
+    nil
+  end
 
-        if decoded_token
-            @current_user = User.find_by(id: decoded_token['user_id'])
-        else
-            render json: { errors: 'Not Authorized' }, status: :unauthorized
-        end
+  def authenticate_request
+    token = request.headers['Authorization']&.split(' ')&.last
+    decoded_token = decode_token(token)
+
+    if decoded_token
+      @current_user = User.find_by(id: decoded_token['user_id'])
+    else
+      render json: { errors: 'Not Authorized' }, status: :unauthorized
     end
+  end
 end
