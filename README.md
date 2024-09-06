@@ -32,6 +32,7 @@ The PayoffPal API provides the backend services and data management for the Payo
 ### Installation
 
 Clone the repository and install dependencies:
+
 ```bash
 git clone https://github.com/your-username/payoffpal-api.git
 cd payoffpal-api
@@ -39,26 +40,63 @@ bundle install
 ```
 
 ### Database Setup
+
 Create and migrate the database:
 
 ```bash
 rails db:create
 rails db:migrate
 ```
+
+Check DB migrate status:
+
+```bash
+rails db:migrate status
+```
+
 ### Running the Server
+
 Start the Rails server:
+
 ```bash
 rails server
 ```
 
 ### Test
+
 - RSpec
-- FactoryBot 
+- FactoryBot
+
+Run the tests:
+
+```bash
+bundle exec rspec
+```
+
+### Code Quality
+
+RuboCop for linting, run:
+
+```bash
+rubocop
+```
+
+To check Syntax error, run:
+
+```bash
+ruby -c <filePath>
+```
 
 ### Development
+
 - Explore the app directory for models, controllers, and views.
 - Update config/routes.rb to manage API endpoints.
 - Manage database schemas and migrations in the db directory.
-
-### Testing
-Use RSpec for Ruby on Rails testing.
+- Verify Route Configuration
+  ```bash
+  rails routes
+  ```
+- Utilize health check endpoint, run:
+  ```bash
+  http://localhost:3000/up
+  ```
