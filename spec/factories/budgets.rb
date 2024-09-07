@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :budget do
-    start_date { Date.today }
-    end_date { Date.today + 1.month }
+    start_date { Time.zone.today }
+    end_date { Time.zone.today + 1.month }
     association :user
   end
 end

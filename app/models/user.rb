@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# User
 class User < ApplicationRecord
   has_secure_password
 
@@ -19,6 +20,7 @@ class User < ApplicationRecord
     return unless matching_types < 3 || password.length < 7
 
     errors.add(:password,
-               'must be at least 7 characters and contain at least three of the following: uppercase letter, lowercase letter, digit, special character.')
+               'must be at least 7 characters and contain at least three of the following: ' \
+               'uppercase letter, lowercase letter, digit, special character.')
   end
 end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Budget Item
 class BudgetItem < ApplicationRecord
   belongs_to :budget
 

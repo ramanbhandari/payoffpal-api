@@ -14,7 +14,7 @@ RSpec.describe 'Profile', type: :request do
   describe 'GET /profile' do
     context 'with valid token' do
       it 'returns users profile information' do
-        get '/profile', headers: { 'Authorization': "Bearer #{token}" }
+        get '/profile', headers: { Authorization: "Bearer #{token}" }
 
         expect(response).to have_http_status(:ok)
         expect(response.body).to include(user.name)
@@ -25,7 +25,7 @@ RSpec.describe 'Profile', type: :request do
 
     context 'with invalid token' do
       it 'returns an unauthorized error' do
-        get '/profile', headers: { 'Authorization': 'Bearer invalid_token' }
+        get '/profile', headers: { Authorization: 'Bearer invalid_token' }
 
         expect(response).to have_http_status(:unauthorized)
       end
