@@ -8,16 +8,6 @@ class BudgetsController < ApplicationController
     render json: @budgets, status: :ok
   end
 
-  # POST /budgets
-  def create
-    budget = @current_user.budgets.build(budget_params)
-    if budget.save
-      render json: budget, status: :created
-    else
-      render json: { errors: budget.errors.full_messages }, status: :unprocessable_entity
-    end
-  end
-
   # GET /budgets/:id
   def show
     budget = @current_user.budgets.find_by(id: params[:id])
@@ -25,6 +15,16 @@ class BudgetsController < ApplicationController
       render json: budget.as_json(include: :budget_items), status: :ok
     else
       render json: { error: 'Budget not found' }, status: :not_found
+    end
+  end
+
+  # POST /budgets
+  def create
+    budget = @current_user.budgets.build(budget_params)
+    if budget.save
+      render json: budget, status: :created
+    else
+      render json: { errors: budget.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

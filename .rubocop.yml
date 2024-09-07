@@ -1,8 +1,12 @@
+require:
+  - rubocop-rails
+
 AllCops:
   Exclude:
     - "db/schema.rb"
     - "db/migrate/*.rb"
   NewCops: enable
+
 Metrics/BlockLength:
   Max: 30
   Exclude:

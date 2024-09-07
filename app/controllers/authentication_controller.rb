@@ -8,7 +8,7 @@ class AuthenticationController < ApplicationController
   def register
     user = User.new(user_params)
     if user.save
-      render json: { user: user, token: generate_token(user) }, status: :created
+      render json: { user:, token: generate_token(user) }, status: :created
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
@@ -20,7 +20,7 @@ class AuthenticationController < ApplicationController
     user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
       token = encode_token({ user_id: user.id })
-      render json: { user: user, token: token }, status: :ok
+      render json: { user:, token: }, status: :ok
     else
       render json: { errors: 'Invalid email or password' }, status: :unauthorized
     end
