@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Budgets Controller
 class BudgetsController < ApplicationController
   # GET /budgets
   def index
@@ -29,16 +30,14 @@ class BudgetsController < ApplicationController
 
   # PUT /budgets/:id
   def update
-    begin
-      budget = @current_user.budgets.find_by(id: params[:id])
-      if budget.update(budget_params)
-        render json: budget
-      else
-        render json: budget.errors, status: :unprocessable_entity
-      end
-    rescue Exception
-      render json: { error: 'Budget not found' }, status: :not_found
+    budget = @current_user.budgets.find_by(id: params[:id])
+    if budget.update(budget_params)
+      render json: budget
+    else
+      render json: budget.errors, status: :unprocessable_entity
     end
+  rescue StandardError
+    render json: { error: 'Budget not found' }, status: :not_found
   end
 
   # DELETE /budgets/:id
@@ -46,7 +45,7 @@ class BudgetsController < ApplicationController
     budget = @current_user.budgets.find_by(id: params[:id])
     if budget
       budget.destroy
-      render json: { message: 'Budget deleted'}, status: :ok
+      render json: { message: 'Budget deleted' }, status: :ok
     else
       render json: { error: 'Budget not found' }, status: :not_found
     end

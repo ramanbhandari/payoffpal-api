@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Authentication Controller
 class AuthenticationController < ApplicationController
   # we can't authenticate users with token for signup and login
   skip_before_action :authenticate_request, only: %i[register login]
