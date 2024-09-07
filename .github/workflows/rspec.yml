@@ -40,11 +40,12 @@ jobs:
             echo "Waiting for PostgreSQL to be ready..."
             sleep 2
           done
-
+      - name: Print Rails environment
+        run: echo $RAILS_ENV
       - name: Set up database
         run: |
-          bundle exec rake db:create
-          bundle exec rake db:schema:load
+          RAILS_ENV=test bundle exec rake db:create
+          RAILS_ENV=test bundle exec rake db:schema:load
 
       - name: Run Rspec Tests
-        run: bundle exec rspec
+        run: RAILS_ENV=test bundle exec rspec
