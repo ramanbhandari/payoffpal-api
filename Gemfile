@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.0.0'
+ruby '3.3.5'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.4'
@@ -43,13 +43,17 @@ gem 'jwt'
 gem 'rack-cors'
 
 group :development, :test do
+  gem 'brakeman'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
+
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mswin mswin64 mingw x64_mingw]
 end
+
+gem 'logger'
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
