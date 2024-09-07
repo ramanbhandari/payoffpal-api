@@ -29,11 +29,15 @@ class BudgetsController < ApplicationController
 
   # PUT /budgets/:id
   def update
-    budget = @current_user.budgets.find(params[:id])
-    if budget.update(budget_params)
-      render json: budget
-    else
-      render json: budget.errors, status: :unprocessable_entity
+    begin
+      budget = @current_user.budgets.find_by(id: params[:id])
+      if budget.update(budget_params)
+        render json: budget
+      else
+        render json: budget.errors, status: :unprocessable_entity
+      end
+    rescue Exception
+      render json: { error: 'Budget not found' }, status: :not_found
     end
   end
 
@@ -42,7 +46,7 @@ class BudgetsController < ApplicationController
     budget = @current_user.budgets.find_by(id: params[:id])
     if budget
       budget.destroy
-      head :no_content
+      render json: { message: 'Budget deleted'}, status: :ok
     else
       render json: { error: 'Budget not found' }, status: :not_found
     end
