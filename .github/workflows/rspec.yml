@@ -16,6 +16,11 @@ jobs:
           POSTGRES_PASSWORD: ${{ secrets.TEST_DATABASE_PASSWORD }}
         ports:
           - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
 
     steps:
       - name: Checkout code
@@ -28,6 +33,18 @@ jobs:
 
       - name: Install Dependencies
         run: bundle install
+
+      - name: Wait for PostgreSQL
+        run: |
+          while ! pg_isready -h localhost -p 5432 -U postgres; do
+            echo "Waiting for PostgreSQL to be ready..."
+            sleep 2
+          done
+
+      - name: Set up database
+        run: |
+          bundle exec rake db:create
+          bundle exec rake db:schema:load
 
       - name: Run Rspec Tests
         run: bundle exec rspec
