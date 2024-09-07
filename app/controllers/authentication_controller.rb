@@ -8,18 +8,12 @@ class AuthenticationController < ApplicationController
   def register
     user = User.new(user_params)
     if user.save
-      begin
-        token = encode_token({ user_id: user.id })
-        render json: { user: user, token: token }, status: :created
-      # if there was an error encoding token and user is created (not what we want)
-      # destroy it
-      rescue StandardError => e
-        user.destroy
-        render json: { errors: "Failed to create token#{e.message}" }, status: :unprocessable_entity
-      end
+      render json: { user: user, token: generate_token(user) }, status: :created
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
+  rescue StandardError => e
+    handle_token_creation_error(user, e)
   end
 
   def login
@@ -36,5 +30,16 @@ class AuthenticationController < ApplicationController
 
   def user_params
     params.permit(:name, :email, :password)
+  end
+
+  def generate_token(user)
+    encode_token({ user_id: user.id })
+  end
+
+  def handle_token_creation_error(user, error)
+    # if there was an error encoding token and user is created (not what we want)
+    # destroy it
+    user.destroy
+    render json: { errors: "Failed to create token:#{error.message}" }, status: :unprocessable_entity
   end
 end
