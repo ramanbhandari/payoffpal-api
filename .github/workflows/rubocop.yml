@@ -1,6 +1,14 @@
 name: RuboCop
 
-on: [push, pull_request]
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+  push:
+    branches:
+      - main
+      - develop
 
 jobs:
   rubocop:
@@ -17,6 +25,7 @@ jobs:
 
       - name: Install dependencies
         run: bundle install
-
+      - name: Display RuboCop Configuration
+        run: cat .rubocop.yml
       - name: Run Rubocop
         run: bundle exec rubocop
