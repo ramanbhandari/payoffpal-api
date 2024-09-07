@@ -1,0 +1,22 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Run RSpec
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.0.0"
+
+      - name: Install Dependencies
+        run: bundle install
+
+      - name: Run Rspec Tests
+        run: bundle exec rspec
