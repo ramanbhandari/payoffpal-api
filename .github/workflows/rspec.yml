@@ -6,6 +6,17 @@ jobs:
   test:
     name: Run RSpec
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: payoffpal_api_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ${{ secrets.TEST_DATABASE_PASSWORD }}
+        ports:
+          - 5432:5432
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3

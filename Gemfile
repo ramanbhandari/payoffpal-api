@@ -44,6 +44,7 @@ gem 'rack-cors'
 
 group :development, :test do
   gem 'brakeman'
+  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'rubocop', require: false
