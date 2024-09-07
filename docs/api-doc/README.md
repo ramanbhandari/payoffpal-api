@@ -25,3 +25,15 @@ Logs in a user and returns a JWT token
 - Header
     - Authorization: Bearer < token >
 
+### GET /budgets
+
+### GET /budgets/:id
+
+### POST /budgets
+
+### PUT /budgets/:id
+
+### GET /budgets/:id/budget_item
+
+
+
