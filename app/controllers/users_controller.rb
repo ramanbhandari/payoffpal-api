@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Users Controller
 class UsersController < ApplicationController
   # makes sure this endpoint is only accessed by authenticated users
   # before_action :authenticate_request

@@ -1,9 +1,9 @@
-# # frozen_string_literal: true
+# frozen_string_literal: true
 
-# FactoryBot.define do
-#   factory :budget do
-#     user { 1 }
-#     start_date { '2024-09-05' }
-#     end_date { '2024-10-05' }
-#   end
-# end
+FactoryBot.define do
+  factory :budget do
+    start_date { Date.today }
+    end_date { Date.today + 1.month }
+    association :user
+  end
+end
