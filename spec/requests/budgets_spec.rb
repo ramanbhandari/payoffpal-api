@@ -14,7 +14,10 @@ RSpec.describe 'Budgets', type: :request do
   describe 'GET /index' do
     context 'new user have not created budget' do
       it 'returns empty [] response' do
+        puts "Token: #{token}" # Debug statement
         get '/budgets', headers: { 'Authorization': "Bearer #{token}" }
+        puts "Response status: #{response.status}" # Debug statement
+        puts "Response body: #{response.body}" # Debug statement
         expect(response).to have_http_status(:ok)
         expect(response.body).to eq('[]')
       end
@@ -31,6 +34,7 @@ RSpec.describe 'Budgets', type: :request do
 
     it 'returns budget created' do
       post '/budgets', headers: { 'Authorization': "Bearer #{token}" }, params: { budget: valid_params }
+      puts "Response status: #{response.status}" # Debug statement
       expect(response).to have_http_status(:success)
     end
   end
