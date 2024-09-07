@@ -78,7 +78,7 @@ bundle exec rspec
 RuboCop for linting, run:
 
 ```bash
-rubocop
+bundle exec rubocop (optional <-a> or <-A>)
 ```
 
 To check Syntax error, run:
