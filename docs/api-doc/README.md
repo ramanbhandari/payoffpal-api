@@ -243,3 +243,26 @@ Get the Budget with `:id` created by the User if it exists. This will include ne
       "message": "Budget item deleted"
   }
   ```
+
+## Refresh Token
+
+### POST /refresh
+
+- Request Body
+  ```JSON
+  {
+    "refresh_token": "...."
+  }
+  ```
+- Success Response
+  ```JSON
+  {
+    "token": "...."
+  }
+  ```
+- Unauthorized (eg. expired refresh_token)
+  ```JSON
+  {
+    "errors": "Refresh token has been expired"
+  }
+  ```

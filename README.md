@@ -100,3 +100,7 @@ ruby -c <filePath>
   ```bash
   http://localhost:3000/up
   ```
+- Suggested VS code extensions:
+  - Ruby LSP
+  - Solargraph
+  - Rubocop
