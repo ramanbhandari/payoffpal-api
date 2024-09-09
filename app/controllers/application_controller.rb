@@ -5,11 +5,14 @@ class ApplicationController < ActionController::API
   before_action :authenticate_request
 
   def encode_token(payload)
+    payload[:exp] = (Time.zone.now + JWTConfig.access_token_expiry).to_i
     JWT.encode(payload, Rails.application.credentials.secret_key_base)
   end
 
   def decode_token(token)
     JWT.decode(token, Rails.application.credentials.secret_key_base).first
+  rescue JWT::ExpiredSignature
+    raise JWT::ExpiredSignature, 'Token has expired, please log in again'
   rescue JWT::DecodeError
     nil
   end
@@ -23,5 +26,7 @@ class ApplicationController < ActionController::API
     else
       render json: { errors: 'Not Authorized' }, status: :unauthorized
     end
+  rescue JWT::ExpiredSignature => e
+    render json: { errors: e.message }, status: :unauthorized
   end
 end
