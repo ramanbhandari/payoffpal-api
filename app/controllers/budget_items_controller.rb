@@ -4,6 +4,7 @@
 class BudgetItemsController < ApplicationController
   before_action :set_budget, only: %i[create update destroy]
 
+  # POST /budgets/:id/budget_items
   def create
     budget_item = @budget.budget_items.build(budget_item_params)
     if budget_item.save
@@ -13,6 +14,7 @@ class BudgetItemsController < ApplicationController
     end
   end
 
+  # PUT /budgets/:id/budget_items/:id
   def update
     budget_item = @budget.budget_items.find(params[:id])
     if budget_item.update(budget_item_params)
@@ -22,6 +24,7 @@ class BudgetItemsController < ApplicationController
     end
   end
 
+  # DELETE /budgets/:id/budget_items/:id
   def destroy
     budget_item = @budget.budget_items.find(params[:id])
     if budget_item

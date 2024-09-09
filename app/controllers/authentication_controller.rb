@@ -5,6 +5,7 @@ class AuthenticationController < ApplicationController
   # we can't authenticate users with token for signup and login
   skip_before_action :authenticate_request, only: %i[register login]
 
+  # POST /register
   def register
     user = User.new(user_params)
     if user.save
@@ -16,6 +17,7 @@ class AuthenticationController < ApplicationController
     handle_token_creation_error(user, e)
   end
 
+  # POST /login
   def login
     user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
