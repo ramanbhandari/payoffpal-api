@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # trigger 'register' & 'signup' actions from AuthenticationController
   post '/register', to: 'authentication#register'
   post '/login', to: 'authentication#login'
+  post '/refresh', to: 'authentication#refresh'
   # trigger 'show' action from UsersController
   get '/profile', to: 'users#show'
 
