@@ -42,6 +42,12 @@ gem 'jwt'
 
 gem 'rack-cors'
 
+gem 'rswag-api'
+gem 'rswag-specs'
+gem 'rswag-ui'
+
+gem 'ostruct'
+
 group :development, :test do
   gem 'brakeman'
   gem 'dotenv-rails'
