@@ -91,6 +91,7 @@ ruby -c <filePath>
 
 Uses the fantastic Swagger (rswag) gem. Start rails server and checkout `localhost/api-docs`
 
+Good first and last reference rswag[https://github.com/rswag/rswag]
 Run the following to generate the API docs
 
 ```bash
