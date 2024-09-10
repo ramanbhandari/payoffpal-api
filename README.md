@@ -87,6 +87,16 @@ To check Syntax error, run:
 ruby -c <filePath>
 ```
 
+### API Docs
+
+Uses the fantastic Swagger (rswag) gem. Start rails server and checkout `localhost/api-docs`
+
+Run the following to generate the API docs
+
+```bash
+rake rswag:specs:swaggerize
+```
+
 ### Development
 
 - Explore the app directory for models, controllers, and views.
