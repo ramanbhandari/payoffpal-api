@@ -6,20 +6,18 @@ RSpec.describe 'Profile API', type: :request do
   let(:user) { FactoryBot.create(:user) }
   let(:token) { encode_token({ user_id: user.id }) }
 
+  # delete the user created for test
   after do
     User.destroy_all
   end
-
   path '/profile' do
     get 'Retrieves user profile information' do
       tags 'Profile'
       security [Bearer: []]
       produces 'application/json'
-      parameter name: :Authorization, in: :header, type: :string, description: 'Bearer token for authorization'
 
       response '200', 'User profile retrieved successfully' do
-        let(:Authorization) { "Bearer #{token}" }
-
+        let(:Authorization) { token }
         run_test! do |response|
           data = JSON.parse(response.body)
           expect(data['name']).to eq(user.name)
