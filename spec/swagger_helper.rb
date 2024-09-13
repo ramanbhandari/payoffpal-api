@@ -31,7 +31,17 @@ RSpec.configure do |config|
             }
           }
         }
-      ]
+      ],
+      components: {
+        securitySchemes: {
+          Bearer: {
+            type: :apiKey,
+            name: :Authorization,
+            in: :header,
+            description: 'Enter your Bearer token in the format **Bearer <token>**'
+          }
+        }
+      }
     }
   }
 

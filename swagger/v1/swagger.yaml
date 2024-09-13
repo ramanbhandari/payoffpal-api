@@ -4,6 +4,32 @@ info:
   title: API V1
   version: v1
 paths:
+  "/login":
+    post:
+      summary: User login
+      tags:
+      - Authentication
+      parameters: []
+      responses:
+        '200':
+          description: Login successful
+        '401':
+          description: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: user@example.com
+                password:
+                  type: string
+                  example: password
+              required:
+              - email
+              - password
   "/profile":
     get:
       summary: Retrieves user profile information
@@ -11,19 +37,48 @@ paths:
       - Profile
       security:
       - Bearer: []
-      parameters:
-      - name: Authorization
-        in: header
-        description: Bearer token for authorization
-        schema:
-          type: string
       responses:
         '200':
           description: User profile retrieved successfully
         '401':
           description: Unauthorized without token
+  "/register":
+    post:
+      summary: User Register
+      tags:
+      - Authentication
+      parameters: []
+      responses:
+        '422':
+          description: Invalid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: John Doe
+                email:
+                  type: string
+                  example: user@example.com
+                password:
+                  type: string
+                  example: password
+              required:
+              - name
+              - email
+              - password
 servers:
 - url: http://localhost:3000
   variables:
     defaultHost:
       default: localhost:3000
+components:
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: Enter your Bearer token in the format **Bearer <token>**

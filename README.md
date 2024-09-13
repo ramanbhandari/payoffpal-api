@@ -4,6 +4,21 @@
 
 The PayoffPal API provides the backend services and data management for the PayoffPal application. This API is built using Ruby on Rails with the API-only mode, and PostgreSQL is used as the database. The API handles user authentication, data processing, and serves the front-end with necessary endpoints.
 
+## API Documentation
+
+You can explore and interact with our API by:
+
+```bash
+# clone repo, then run
+bundle install
+rails server
+# now interact with the API at http://localhost:3000/api-docs/
+```
+
+This link will take you to the Swagger UI where you can see all available endpoints and test them out.
+
+It uses the fantastic Swagger (rswag) gem. Reference: [rswag](https://github.com/rswag/rswag)
+
 ## Features
 
 - API endpoints for Debt Tracker
@@ -87,17 +102,6 @@ To check Syntax error, run:
 ruby -c <filePath>
 ```
 
-### API Docs
-
-Uses the fantastic Swagger (rswag) gem. Start rails server and checkout `localhost/api-docs`
-
-Good first and last reference rswag[https://github.com/rswag/rswag]
-Run the following to generate the API docs
-
-```bash
-rake rswag:specs:swaggerize
-```
-
 ### Development
 
 - Explore the app directory for models, controllers, and views.
@@ -115,3 +119,8 @@ rake rswag:specs:swaggerize
   - Ruby LSP
   - Solargraph
   - Rubocop
+- Run the following to generate the API docs
+
+  ```bash
+  rake rswag:specs:swaggerize
+  ```
